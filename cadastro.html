@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 01</title>
+    <script>
+        function cadastrar(event){
+            const nome = document.getElementById("input-nome").value; //.value é pra pegar o valor dentro do id do objeto
+            event.preventDefault(); //Previne o recarregamento da página
+            alert("Dados do " + nome + " cadastrados!");
+            document.getElementById("form-cadastro").reset(); // limpa todos os campos
+        }
+    </script>
+</head>
+<body>
+    <h1> <!--Títulos-->
+        Formulário de Cadastro
+    </h1>
+    <form id="form-cadastro" onsubmit="cadastrar(event)" style="background-color: aquamarine;">
+        <label for="input-nome">Nome:</label>
+        <input id="input-nome" placeholder="Digite seu nome" type="text" required>
+        <br><br> <!--Quebra de linha-->
+        
+        <label for="input-email">Email:</label>
+        <input id="input-email" placeholder="Digite seu email" type="email" required>
+        <br><br>
+        
+        <label for="input-senha">Senha:</label>
+        <input id="input-senha" placeholder="Digite sua senha" type="password" required>
+        <br><br>
+        <button id="btn-cadastrar" type="submit">
+            Cadastrar
+        </button>
+    </form>
+</body>
+</html>
