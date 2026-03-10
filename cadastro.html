@@ -12,23 +12,28 @@
             document.getElementById("form-cadastro").reset(); // limpa todos os campos
         }
     </script>
+    <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
-    <h1> <!--Títulos-->
+    <form id="form-cadastro" onsubmit="cadastrar(event)">
+        <h1> <!--Títulos-->
         Formulário de Cadastro
-    </h1>
-    <form id="form-cadastro" onsubmit="cadastrar(event)" style="background-color: aquamarine;">
-        <label for="input-nome">Nome:</label>
-        <input id="input-nome" placeholder="Digite seu nome" type="text" required>
-        <br><br> <!--Quebra de linha-->
-        
-        <label for="input-email">Email:</label>
-        <input id="input-email" placeholder="Digite seu email" type="email" required>
-        <br><br>
-        
-        <label for="input-senha">Senha:</label>
-        <input id="input-senha" placeholder="Digite sua senha" type="password" required>
-        <br><br>
+        </h1>
+        <div class="inputs">
+            <div class="grupoLabelInput">
+                <label for="input-nome">Nome:</label>
+                <input id="input-nome" placeholder="Digite seu nome" type="text" required>
+            </div>
+            <div class="grupoLabelInput">
+                <label for="input-email">Email:</label>
+                <input id="input-email" placeholder="Digite seu email" type="email" required>
+            </div>
+            <div class="grupoLabelInput">
+                <label for="input-senha">Senha:</label>
+                <input id="input-senha" placeholder="Digite sua senha" type="password" required>
+            </div>
+        </div>
         <button id="btn-cadastrar" type="submit">
             Cadastrar
         </button>
