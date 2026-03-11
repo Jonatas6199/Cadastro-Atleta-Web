@@ -8,13 +8,44 @@
         function cadastrar(event){
             const nome = document.getElementById("input-nome").value; //.value é pra pegar o valor dentro do id do objeto
             event.preventDefault(); //Previne o recarregamento da página
-            alert("Dados do " + nome + " cadastrados!");
+
+            document.getElementById("mensagem").textContent = "Dados do " + nome + " cadastrados!";
+            document.getElementById("overlay").style.display = "flex";
             document.getElementById("form-cadastro").reset(); // limpa todos os campos
         }
+        function showHelpMessage(){
+            document.getElementById("mensagem").textContent = "Preencha todos os campos do formulário";
+            document.getElementById("overlay").style.display = "flex";
+        }
+        function fechar(){
+             document.getElementById("overlay").style.display = "none";
+        }
+
+        document.addEventListener("DOMContentLoaded", function(){
+            document.getElementById("overlay").onclick = function(e){
+            if(e.target.id === "overlay"){
+                fechar();
+            }
+         }
+        });
+
+        document.addEventListener("keydown", function(e){
+            if(e.key === "Escape"){
+                fechar();
+            }
+        });
+
+         
     </script>
     <link rel="stylesheet" href="style.css">
     
 </head>
+<div id="overlay" class="overlay">
+    <div class="modal">
+        <p id="mensagem"></p>
+        <button onclick="fechar()">Fechar</button>
+    </div>
+</div>
 <body>
     <main>
         <form id="form-cadastro" onsubmit="cadastrar(event)">
@@ -41,7 +72,7 @@
         </form>
         
     </main>
-    <button class="help">
+    <button class="help" onclick="showHelpMessage()">
         <img src="help.svg">
     </button>
     <footer>
