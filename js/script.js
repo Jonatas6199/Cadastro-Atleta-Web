@@ -1,3 +1,6 @@
+var usuarioTeste;
+let cadastroTeste;
+
 function cadastrar(event) {
     event.preventDefault(); //Previne o recarregamento da página
 

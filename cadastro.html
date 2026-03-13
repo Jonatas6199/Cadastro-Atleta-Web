@@ -16,33 +16,38 @@
         </div>
     </div>
     <main> <!--Onde fica o conteúdo principal da nossa página-->
-        <form id="form-cadastro" onsubmit="cadastrar(event)">
-            <h1> <!--Títulos-->
-            Formulário de Cadastro
-            </h1>
-            <div class="inputs">
-                <div class="grupoLabelInput">
-                    <label for="input-nome">Digite seu nome</label>
-                    <input id="input-nome" placeholder="nome" type="text" required>
+        <div class="leftContainer">
+
+        </div>
+        <div class="rightContainer">
+            <form id="form-cadastro" onsubmit="cadastrar(event)">
+                <h1> <!--Títulos-->
+                Formulário de Cadastro
+                </h1>
+                <div class="inputs">
+                    <div class="grupoLabelInput">
+                        <label for="input-nome">Digite seu nome</label>
+                        <input id="input-nome" placeholder="nome" type="text" required>
+                    </div>
+                    <div class="grupoLabelInput">
+                        <label for="input-email">Insira o e-mail</label>
+                        <input id="input-email" placeholder="email@mail.com" type="email" required>
+                    </div>
+                    <div class="grupoLabelInput">
+                        <label for="input-senha">Digite uma nova senha</label>
+                        <input id="input-senha" placeholder="senha" type="password" required>
+                    </div>
                 </div>
-                <div class="grupoLabelInput">
-                    <label for="input-email">Insira o e-mail</label>
-                    <input id="input-email" placeholder="email@mail.com" type="email" required>
-                </div>
-                <div class="grupoLabelInput">
-                    <label for="input-senha">Digite uma nova senha</label>
-                    <input id="input-senha" placeholder="senha" type="password" required>
-                </div>
-            </div>
-            <button id="btn-cadastrar" type="submit">
-                Cadastrar
-            </button>
-            
-            <button onclick="verCadastrados()" class="button-cadastrados">
-                Ver Cadastrados
-            </button>
-            
-        </form>
+                <button id="btn-cadastrar" type="submit">
+                    Cadastrar
+                </button>
+                
+                <button onclick="verCadastrados()" class="button-cadastrados">
+                    Ver Cadastrados
+                </button>
+            </form>
+        </div>
+        
     </main>
     <button id="btn-help" class="help" onclick="showHelpMessage()">
         <img src="media/help.svg">
@@ -50,5 +55,6 @@
     <footer>
             Copywright 2026 © Todos os direitos reservados
     </footer>
+    
 </body>
 </html>
