@@ -3,81 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aula 01</title>
-    <script>
-        function cadastrar(event){
-            const nome = document.getElementById("input-nome").value; //.value é pra pegar o valor dentro do id do objeto
-            event.preventDefault(); //Previne o recarregamento da página
-
-            document.getElementById("mensagem").textContent = "Dados do " + nome + " cadastrados!";
-            document.getElementById("overlay").style.display = "flex";
-            document.getElementById("form-cadastro").reset(); // limpa todos os campos
-        }
-        function showHelpMessage(){
-            document.getElementById("mensagem").textContent = "Preencha todos os campos do formulário";
-            document.getElementById("overlay").style.display = "flex";
-        }
-        function fechar(){
-             document.getElementById("overlay").style.display = "none";
-        }
-
-        document.addEventListener("DOMContentLoaded", function(){
-            document.getElementById("overlay").onclick = function(e){
-            if(e.target.id === "overlay"){
-                fechar();
-            }
-         }
-        });
-
-        document.addEventListener("keydown", function(e){
-            if(e.key === "Escape"){
-                fechar();
-            }
-        });
-
-         
-    </script>
-    <link rel="stylesheet" href="style.css">
-    
+    <title>Cadastro de Atleta</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
 </head>
-<div id="overlay" class="overlay">
-    <div class="modal">
-        <p id="mensagem"></p>
-        <button onclick="fechar()">Fechar</button>
-    </div>
-</div>
 <body>
-    <main>
-        <form id="form-cadastro" onsubmit="cadastrar(event)">
-        <h1> <!--Títulos-->
-        Formulário de Cadastro
-        </h1>
-        <div class="inputs">
-            <div class="grupoLabelInput">
-                <label for="input-nome">Nome:</label>
-                <input id="input-nome" placeholder="Digite seu nome" type="text" required>
-            </div>
-            <div class="grupoLabelInput">
-                <label for="input-email">Email:</label>
-                <input id="input-email" placeholder="Digite seu email" type="email" required>
-            </div>
-            <div class="grupoLabelInput">
-                <label for="input-senha">Senha:</label>
-                <input id="input-senha" placeholder="Digite sua senha" type="password" required>
-            </div>
+    <!--Tela de fundo preta que fica aparecendo quando emite um alert pro usuário-->
+    <div id="overlay" class="overlay" style="display: none;">
+        <div class="modal" > <!--alert customizado-->
+            <p id="mensagem"></p>
+            <button onclick="fecharOverlay()">Fechar</button>
         </div>
-        <button id="btn-cadastrar" type="submit">
-            Cadastrar
-        </button>
+    </div>
+    <main> <!--Onde fica o conteúdo principal da nossa página-->
+        <form id="form-cadastro" onsubmit="cadastrar(event)">
+            <h1> <!--Títulos-->
+            Formulário de Cadastro
+            </h1>
+            <div class="inputs">
+                <div class="grupoLabelInput">
+                    <label for="input-nome">Digite seu nome</label>
+                    <input id="input-nome" placeholder="nome" type="text" required>
+                </div>
+                <div class="grupoLabelInput">
+                    <label for="input-email">Insira o e-mail</label>
+                    <input id="input-email" placeholder="email@mail.com" type="email" required>
+                </div>
+                <div class="grupoLabelInput">
+                    <label for="input-senha">Digite uma nova senha</label>
+                    <input id="input-senha" placeholder="senha" type="password" required>
+                </div>
+            </div>
+            <button id="btn-cadastrar" type="submit">
+                Cadastrar
+            </button>
+            
+            <button onclick="verCadastrados()" class="button-cadastrados">
+                Ver Cadastrados
+            </button>
+            
         </form>
-        
     </main>
-    <button class="help" onclick="showHelpMessage()">
-        <img src="help.svg">
+    <button id="btn-help" class="help" onclick="showHelpMessage()">
+        <img src="media/help.svg">
     </button>
     <footer>
             Copywright 2026 © Todos os direitos reservados
     </footer>
-    
 </body>
 </html>
