@@ -6,55 +6,62 @@
     <title>Cadastro de Atleta</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/script.js"></script>
+    <script src="js/auth.js"></script>
 </head>
 <body>
     <!--Tela de fundo preta que fica aparecendo quando emite um alert pro usuário-->
+    <!--posicao fixa, nao afetado pelo flexbox-->
     <div id="overlay" class="overlay" style="display: none;">
         <div class="modal" > <!--alert customizado-->
             <p id="mensagem"></p>
-            <button onclick="fecharOverlay()">Fechar</button>
+            <button class="button-error" onclick="fecharOverlay()">Fechar</button>
         </div>
     </div>
     <main> <!--Onde fica o conteúdo principal da nossa página-->
         <div class="leftContainer">
-
         </div>
         <div class="rightContainer">
-            <form id="form-cadastro" onsubmit="cadastrar(event)">
+            <form id="form-cadastro" onsubmit="login(event)">
                 <h1> <!--Títulos-->
-                Formulário de Cadastro
+                Login
                 </h1>
                 <div class="inputs">
                     <div class="grupoLabelInput">
-                        <label for="input-nome">Digite seu nome</label>
-                        <input id="input-nome" placeholder="nome" type="text" required>
+                        <label for="input-nome">Usuário</label>
+                        <input id="input-nome" placeholder="usuario ou e-mail" type="text" required>
                     </div>
+                    
                     <div class="grupoLabelInput">
-                        <label for="input-email">Insira o e-mail</label>
-                        <input id="input-email" placeholder="email@mail.com" type="email" required>
-                    </div>
-                    <div class="grupoLabelInput">
-                        <label for="input-senha">Digite uma nova senha</label>
+                        <label for="input-senha">Senha</label>
                         <input id="input-senha" placeholder="senha" type="password" required>
                     </div>
                 </div>
                 <button id="btn-cadastrar" type="submit">
-                    Cadastrar
+                    Login
                 </button>
                 
+                <!--
                 <button onclick="verCadastrados()" class="button-cadastrados">
                     Ver Cadastrados
                 </button>
+                -->
             </form>
         </div>
         
     </main>
+    <!--posicao fixa, nao afetado pelo flexbox-->
     <button id="btn-help" class="help" onclick="showHelpMessage()">
         <img src="media/help.svg">
     </button>
     <footer>
             Copywright 2026 © Todos os direitos reservados
     </footer>
+
+    <script>
+         if(verificarLogado()){
+            window.location.href = "cadastrados.html"
+        }
+    </script>
     
 </body>
 </html>

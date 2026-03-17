@@ -5,6 +5,7 @@
 <title>Usuários cadastrados</title>
 <link rel="stylesheet" href="css/style.css">
   <script src="js/script.js"></script>
+  <script src="js/auth.js"></script>
 <style>
 
 .container{
@@ -45,10 +46,13 @@ li{
         <h1>Usuários cadastrados</h1>
         <ul id="listaUsuarios">
         </ul>
-        <button class="voltar" onclick="voltar()">Voltar
+        <button class="voltar" onclick="voltar()">Sair
         </button>
     </div>
 <script>
+    if(!verificarLogado()){
+        window.location.href = "cadastro.html"
+    }
 
 let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
@@ -76,6 +80,7 @@ if(usuarios.length === 0){
 
 function voltar(){
     window.location.href = "cadastro.html";
+    logout();
 }
 
 </script>
