@@ -9,6 +9,7 @@
 :root{
     --background-button-green: green;
     --background-button-blue: rgb(32, 152, 192);
+    --background-button-blue-darker: rgb(25, 124, 157);
     --background-button-blue-focus: rgb(19, 96, 121);
     --background-button-red: red;
     --background-button-green-hover: darkgreen;
@@ -17,13 +18,19 @@
     --background-gray:#474747;
 }
 
-body {
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--default-white-background);
+}
+.login-body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-body:before{
+.login-body:before{
     content: "";
     position: fixed;
     top: 0;
@@ -225,7 +232,7 @@ footer{
     padding: 2px;
     width: 50px;
     height: 50px;
-    background-color:  var(--background-button-blue);
+    background-color:  var(--background-button-blue-darker);
     border-radius: 50px;
     color: var(--default-white-background);
     overflow: hidden; 

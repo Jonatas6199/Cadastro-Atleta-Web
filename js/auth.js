@@ -10,7 +10,7 @@ function login(event){
     ){
         //vai ser como se fosse um token
         localStorage.setItem("logado", "true");
-        window.location.href = "cadastrados.html"
+        window.location.href = "dashboard.html"
         return true;
     }
     else{
@@ -21,7 +21,7 @@ function login(event){
 
 function logout(){
     localStorage.removeItem("logado");
-    window.location.href = "cadastro.html"
+    window.location.href = "login.html"
 }
 
 function verificarLogado(){

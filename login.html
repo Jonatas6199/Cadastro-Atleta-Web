@@ -8,7 +8,7 @@
     <script src="js/script.js"></script>
     <script src="js/auth.js"></script>
 </head>
-<body>
+<body class="login-body">
     <!--Tela de fundo preta que fica aparecendo quando emite um alert pro usuário-->
     <!--posicao fixa, nao afetado pelo flexbox-->
     <div id="overlay" class="overlay" style="display: none;">
@@ -21,7 +21,7 @@
         <div class="leftContainer">
         </div>
         <div class="rightContainer">
-            <form id="form-cadastro" onsubmit="login(event)">
+            <form id="form-login" onsubmit="login(event)">
                 <h1> <!--Títulos-->
                 Login
                 </h1>
@@ -36,7 +36,7 @@
                         <input id="input-senha" placeholder="senha" type="password" required>
                     </div>
                 </div>
-                <button id="btn-cadastrar" type="submit">
+                <button id="btn-login" type="submit">
                     Login
                 </button>
                 
@@ -59,7 +59,7 @@
 
     <script>
          if(verificarLogado()){
-            window.location.href = "cadastrados.html"
+            window.location.href = "dashboard.html"
         }
     </script>
     

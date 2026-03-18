@@ -1,6 +1,3 @@
-var usuarioTeste;
-let cadastroTeste;
-
 function cadastrar(event) {
     event.preventDefault(); //Previne o recarregamento da página
 
@@ -56,7 +53,7 @@ document.addEventListener("keydown", function (e) {
 
 function verCadastrados() {
     //redirecionar para um endereço
-    window.location.href = "cadastrados.html"
+    window.location.href = "dashboard.html"
 }
 
 function setElementText(element, text){
@@ -68,7 +65,7 @@ function setElementDisplay(element, display){
 }
 
 function resetForm(){
-    document.getElementById("form-cadastro").reset(); // limpa todos os campos
+    document.getElementById("form-login").reset(); // limpa todos os campos
 }
 function getElementValue(element){
     return document.getElementById(element).value;
