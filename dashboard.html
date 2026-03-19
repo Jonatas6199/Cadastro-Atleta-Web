@@ -1,23 +1,132 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-<meta charset="UTF-8">
-<title>Usuários cadastrados</title>
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/dashboard-style.css">
-<script src="js/script.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/dashboard.js"></script>
+    <meta charset="UTF-8">
+    <title>Usuários cadastrados</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard-style.css">
+    <script src="js/script.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Usuários cadastrados</h1>
+    <div id="overlay" class="overlay" style="display: none;">
+        <div class="modal"> <!--alert customizado-->
+            <p id="mensagem"></p>
+            <button class="button-login" onclick="fecharOverlay()">Fechar</button>
+        </div>
+    </div>
+    <header class="header-padrao">
+        <h1>Cadastro de Atletas</h1>
+        <button class="perfil-usuario">
+            <img src="media/user-profile.svg">
+        </button>
+    </header>
+    <nav id="abas" class="abas">
+        <button id="btn-cadastrar" class="btn-aba" onclick="onCadastrarClick()">Cadastrar</button>
+        <button id="btn-listar" class="btn-aba" onclick="onListarClick()">Listar</button>
+    </nav>
+    <div id="container-lista" class="container">
+        <h1>Atletas Cadastrados</h1>
         <ul id="listaUsuarios">
         </ul>
-        <button class="voltar" onclick= "voltar()">
+        <button class="button-cadastrados" onclick="voltar()">
             Sair
         </button>
     </div>
+    <form id="container-cadastro" class="container" onsubmit="cadastrarAtleta(event)">
+        <h1 class="titulo">Cadastrar Atleta</h1>
+        <h4 class="subtitulo">
+            Dados Pessoais
+        </h4>
+        <div class="grupoLabelInput">
+            <label for="input-nome-atleta">Nome Completo</label>
+            <input id="input-nome-atleta" placeholder="digite o nome completo" type="text" required>
+        </div>
+        <div class="linha">
+            <div class="grupoLabelInput">
+                <label for="input-dtNascimento">Data Nascimento</label>
+                <input id="input-dtNascimento" placeholder="Data de Nascimento" type="date" required>
+            </div>
+
+            <!--TODO: TROCAR POR SELECT COM PAÍSES-->
+            <div class="grupoLabelInput">
+                <label for="input-nacionalidade">Nacionalidade</label>
+                <input id="input-nacionalidade" placeholder="Nacionalidade" type="text" required>
+            </div>
+        </div>
+
+        <div class="linha">
+            <div class="grupoLabelInput">
+                <label for="input-cpf">CPF</label>
+                <input id="input-cpf" placeholder="CPF" type="text" required>
+            </div>
+
+            <div class="grupoLabelInput">
+                <label for="input-modalidade">Modalidade</label>
+                <input id="input-modalidade" placeholder="Modalidade" type="text" required>
+            </div>
+        </div>
+
+        <div class="linha">
+            <div class="grupoLabelInput">
+                <label for="input-genero">Gênero</label>
+                <input id="input-genero" placeholder="Gênero" type="text" required>
+            </div>
+
+            <div class="grupoLabelInput">
+                <label for="input-categoria">Categoria</label>
+                <select class="input-default" id="input-categoria" required>
+                    <option disabled selected>Selecione a categoria</option>
+                    <option>Sub-20</option>
+                    <option>Sub-23</option>
+                    <option>Sênior</option>
+                </select>
+            </div>
+        </div>
+        <h4 class="subtitulo">Dados Médicos</h4>
+        <div class="linha">
+            <div class="grupoLabelInput">
+                <label for="input-peso">Peso (Kg)</label>
+                <input id="input-peso" placeholder="Ex: 75" type="number" required>
+            </div>
+
+            <div class="grupoLabelInput">
+                <label for="input-altura">Altura</label>
+                <input id="input-altura" placeholder="Ex: 1.80" type="number" required>
+            </div>
+        </div>
+        <div class="linha">
+            <div class="grupoLabelInput">
+                <label for="input-tipoSanguineo">Tipo Sanguíneo</label>
+                <select class="input-default" id="input-tipoSanguineo" required>
+                    <option value="" disabled selected>Selecione um tipo sanguíneo</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+            </div>
+        </div>
+         <div class="grupoLabelInput">
+                <label for="input-alergias">Alergias</label>
+                <input id="input-alergias" placeholder="Ex: Diporona, Loratadina, etc" type="text" required>
+        </div>
+         <div class="grupoLabelInput">
+                <label for="input-historico">Histórico Médico</label>
+                <input id="input-historico" placeholder="Ex: Cirurgia na clavícula, pedra nos rins" type="text" required>
+        </div>
+        <button class="button-login" type="submit">
+            Cadastrar
+        </button>
+    </form>
+
 </body>
+
 </html>

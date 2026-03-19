@@ -118,7 +118,8 @@ form {
 input {
     padding: 5px;
     margin: 5px;
-    width: 20rem;
+    min-width: 300px;
+    width: 100%;
     border: none;
     outline: none;
     border-bottom: 1px solid var(--background-button-blue);
@@ -135,6 +136,24 @@ input:focus {
     transition: 1s;
 }
 
+
+.input-default {
+    padding: 5px;
+    margin: 5px;
+    min-width: 300px;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid var(--background-button-blue);
+}
+
+.input-default:focus {
+    border-bottom: 1px solid var(--background-button-blue-focus);
+    border-radius: 5px;
+    background-color: var(--default-white-background);
+    transition: 1s;
+}
+
 .grupoLabelInput {
     display: flex;
     flex-direction: column;
@@ -142,7 +161,7 @@ input:focus {
     gap: 2px;
 }
 
-button {
+.button-login {
     margin-top: 40px;
     align-self: center;
     padding-top: 10px;
@@ -167,7 +186,7 @@ button {
     border: none;
     color: var(--default-white-background);
     font-weight: bold;
-    background-color: var(--background-button-green);
+    background-color: var(--background-button-blue);
 }
 
 
@@ -185,13 +204,13 @@ button {
     background-color: var(--background-button-red);
 }
 
-button:hover {
+.button-login:hover {
     background-color: var(--background-button-green-hover);
     color:  var(--default-white-background);
     transition: 1s;
 }
 
-h1 {
+.h1-login {
     margin-bottom: 30px;
     margin-top: 20px;
     text-align: center;
@@ -286,4 +305,11 @@ footer{
     border-radius: 7px;
     text-align: center;
     box-shadow: 0px 10px 20px var(--default-box-shadow);
+}
+
+.warning-message{
+    font-size: 8px;
+    color:red;
+    display: none;
+    padding-left: 10px;
 }

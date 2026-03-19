@@ -4,6 +4,12 @@ function login(event){
     event.preventDefault(); //Previne o recarregamento da página
     const usuario = getElementValue("input-nome");
     const senha = getElementValue("input-senha");
+    const warning_username = document.getElementById("warning-username");
+
+    if(usuario.length <4)
+        warning_username.style.display = "inline";
+    else
+        warning_username.style.display = "none";
 
     if(usuario === "admin" &&
         senha === "123"

@@ -22,13 +22,14 @@
         </div>
         <div class="rightContainer">
             <form id="form-login" onsubmit="login(event)">
-                <h1> <!--Títulos-->
+                <h1 class="h1-login"> <!--Títulos-->
                 Login
                 </h1>
                 <div class="inputs">
                     <div class="grupoLabelInput">
                         <label for="input-nome">Usuário</label>
                         <input id="input-nome" placeholder="usuario ou e-mail" type="text" required>
+                        <p id="warning-username" class="warning-message">Nome de Usuário deve conter no mínimo 4 caracteres</p>
                     </div>
                     
                     <div class="grupoLabelInput">
@@ -36,7 +37,7 @@
                         <input id="input-senha" placeholder="senha" type="password" required>
                     </div>
                 </div>
-                <button id="btn-login" type="submit">
+                <button class="button-login" id="btn-login" type="submit">
                     Login
                 </button>
                 
