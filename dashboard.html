@@ -11,16 +11,24 @@
     <script src="js/dashboard.js"></script>
 </head>
 
-<body>
+<body id="body">
     <div id="overlay" class="overlay" style="display: none;">
         <div class="modal"> <!--alert customizado-->
             <p id="mensagem"></p>
             <button class="button-login" onclick="fecharOverlay()">Fechar</button>
         </div>
     </div>
+
+    <div id="perfil" class="perfil">
+        <div class="perfil-lista">
+            <button class="perfil-button">Preferências</button>
+            <button class="perfil-button-sair" onclick="voltar()">Sair</button>
+        </div>
+    </div>
+
     <header class="header-padrao">
         <h1>Cadastro de Atletas</h1>
-        <button class="perfil-usuario">
+        <button onclick="abrirPerfil()" class="perfil-usuario">
             <img src="media/user-profile.svg">
         </button>
     </header>
@@ -29,12 +37,28 @@
         <button id="btn-listar" class="btn-aba" onclick="onListarClick()">Listar</button>
     </nav>
     <div id="container-lista" class="container">
-        <h1>Atletas Cadastrados</h1>
-        <ul id="listaUsuarios">
-        </ul>
-        <button class="button-cadastrados" onclick="voltar()">
-            Sair
-        </button>
+        <h1 class="subtitulo">Atletas Cadastrados</h1>
+        <table class="tabela" id="tabela-atletas">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Nacionalidade</th>
+                    <th>Data de Nascimento</th>
+                    <th>Cpf</th>
+                    <th>Modalidade</th>
+                    <th>Gênero</th>
+                    <th>Categoria</th>
+                    <th>Peso</th>
+                    <th>Altura</th>
+                    <th>Tipo Sanguíneo</th>
+                    <th>Alergias</th>
+                    <th>Histórico</th>
+                </tr>
+            </thead>
+            <tbody id="tabela-atletas-body">
+            </tbody>
+        </table>
+       
     </div>
     <form id="container-cadastro" class="container" onsubmit="cadastrarAtleta(event)">
         <h1 class="titulo">Cadastrar Atleta</h1>
@@ -80,9 +104,9 @@
                 <label for="input-categoria">Categoria</label>
                 <select class="input-default" id="input-categoria" required>
                     <option disabled selected>Selecione a categoria</option>
-                    <option>Sub-20</option>
-                    <option>Sub-23</option>
-                    <option>Sênior</option>
+                    <option value="1">Sub-20</option>
+                    <option value="2">Sub-23</option>
+                    <option value="3">Sênior</option>
                 </select>
             </div>
         </div>
@@ -114,13 +138,13 @@
                 </select>
             </div>
         </div>
-         <div class="grupoLabelInput">
-                <label for="input-alergias">Alergias</label>
-                <input id="input-alergias" placeholder="Ex: Diporona, Loratadina, etc" type="text" required>
+        <div class="grupoLabelInput">
+            <label for="input-alergias">Alergias</label>
+            <input id="input-alergias" placeholder="Ex: Diporona, Loratadina, etc" type="text" required>
         </div>
-         <div class="grupoLabelInput">
-                <label for="input-historico">Histórico Médico</label>
-                <input id="input-historico" placeholder="Ex: Cirurgia na clavícula, pedra nos rins" type="text" required>
+        <div class="grupoLabelInput">
+            <label for="input-historico">Histórico Médico</label>
+            <input id="input-historico" placeholder="Ex: Cirurgia na clavícula, pedra nos rins" type="text" required>
         </div>
         <button class="button-login" type="submit">
             Cadastrar

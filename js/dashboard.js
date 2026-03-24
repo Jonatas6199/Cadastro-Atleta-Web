@@ -1,42 +1,37 @@
 //Quando a minha tela carregar o conteúdo
 document.addEventListener("DOMContentLoaded", function () {
 
-    if(!verificarLogado()){
+    if (!verificarLogado()) {
         window.location.href = "login.html"
     }
-    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-
-    const lista = document.getElementById("listaUsuarios");
-
-    if(usuarios.length === 0){
-
-        const li = document.createElement("li");
-        li.textContent = "Nenhum usuário cadastrado.";
-        lista.appendChild(li);
-
-    }else{
-
-        usuarios.forEach(usuario => {
-
-            const li = document.createElement("li");
-
-            li.textContent = usuario.nome + " - " + usuario.email;
-
-            lista.appendChild(li);
-
-        });
-
-    }
     onCadastrarClick();
+    carregarTabela();
+
+    //adiciona um escutador pra toda vez que o usuário digitar dentro da tela
+    //se for um esc, ele fecha o overlay
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+            fecharPerfil();
+        }
+    });
+
+    const perfil = this.getElementById("perfil");
+    document.addEventListener("mousedown", function (e) {
+        if (!perfil || !perfil.contains(e.target)) {
+            fecharPerfil();
+        }
+    });
+
+
 });
 
 
-function voltar(){
+function voltar() {
     window.location.href = "login.html";
     logout();
 }
 
-function onListarClick(){
+function onListarClick() {
     const element = document.getElementById("btn-listar");
     element.classList.remove("btn-aba");
     element.classList.add("btn-aba-selecionado");
@@ -49,7 +44,7 @@ function onListarClick(){
     const containerCadastro = document.getElementById("container-cadastro");
     containerCadastro.style.display = "none";
 }
-function onCadastrarClick(){
+function onCadastrarClick() {
     const element = document.getElementById("btn-cadastrar");
     element.classList.remove("btn-aba");
     element.classList.add("btn-aba-selecionado");
@@ -63,7 +58,7 @@ function onCadastrarClick(){
     containerCadastro.style.display = "flex";
 }
 
-function cadastrarAtleta(event){
+function cadastrarAtleta(event) {
     event.preventDefault(); //nao recarregar a pagina
 
     //Atleta
@@ -81,20 +76,20 @@ function cadastrarAtleta(event){
     let alergias = getElementValue("input-alergias");
     let historico = getElementValue("input-historico");
 
-  
+
     const atleta = { //Criando um objeto atleta que não é mapeado automaticamente
         nome: nome,
         nacionalidade: nacionalidade,
         dtNascimento: dtNascimento,
         cpf: cpf,
-        modalidade : modalidade,
-        genero : genero,
-        categoria : categoria,
-        peso : peso,
-        altura : altura,
-        tipoSanguineo : tipoSanguineo,
-        alergias : alergias,
-        historico : historico
+        modalidade: modalidade,
+        genero: genero,
+        categoria: categoria,
+        peso: peso,
+        altura: altura,
+        tipoSanguineo: tipoSanguineo,
+        alergias: alergias,
+        historico: historico
     };
 
     //Tenta ler os dados da lista de atletas, se ela não existir, devolve uma vazia
@@ -106,11 +101,53 @@ function cadastrarAtleta(event){
     //atualiza ou cria a lista no localStorage com o formato de JSON
     localStorage.setItem("atletas", JSON.stringify(atletas));
 
-    setElementText("mensagem","Dados do " + nome + " cadastrados!");
-    setElementDisplay("overlay","flex");
+    setElementText("mensagem", "Dados do " + nome + " cadastrados!");
+    setElementDisplay("overlay", "flex");
     resetFormCadastroAtleta();
 }
 
-function resetFormCadastroAtleta(){
+function resetFormCadastroAtleta() {
     document.getElementById("container-cadastro").reset(); // limpa todos os campos
+}
+
+function abrirPerfil() {
+    let menu = document.getElementById("perfil");
+    if (menu.style.display != "flex")
+        setElementDisplay("perfil", "flex");
+    
+}
+
+
+function fecharPerfil() {
+    setElementDisplay("perfil", "none");
+}
+
+function carregarTabela(){
+    let atletas = JSON.parse(localStorage.getItem("atletas")) || [];
+
+    let body = document.getElementById("tabela-atletas-body");
+
+    if (atletas.length === 0) {
+        body.innerHTML = "<tr><td colspan='12'> Nenhum Atleta Encontrado. </td></tr>";
+
+    } else {
+
+        body.innerHTML = atletas.map(function(atleta)  {
+            let htmlBody = "<tr>" +
+            "<td>"+ atleta.nome + "</td>" +
+            "<td>"+ atleta.nacionalidade + "</td>" +
+            "<td>"+ atleta.dtNascimento + "</td>" +
+            "<td>"+ atleta.cpf + "</td>" +
+            "<td>"+ atleta.modalidade + "</td>" +
+            "<td>"+ atleta.genero + "</td>" +
+            "<td>"+ atleta.categoria + "</td>" +
+            "<td>"+ atleta.peso + "</td>" +
+            "<td>"+ atleta.altura + "</td>" +
+            "<td>"+ atleta.tipoSanguineo + "</td>" +
+            "<td>"+ atleta.alergias + "</td>" +
+            "<td>"+ atleta.historico + "</td>" +
+            "</tr>";
+            return htmlBody;
+        }).join("");
+    }
 }

@@ -133,7 +133,7 @@ input:focus {
     border-bottom: 1px solid var(--background-button-blue-focus);
     border-radius: 5px;
     background-color: var(--default-white-background);
-    transition: 1s;
+    transition: 1s ease-in-out;
 }
 
 
@@ -151,7 +151,7 @@ input:focus {
     border-bottom: 1px solid var(--background-button-blue-focus);
     border-radius: 5px;
     background-color: var(--default-white-background);
-    transition: 1s;
+    transition: 1s ease-in-out;
 }
 
 .grupoLabelInput {
@@ -163,9 +163,9 @@ input:focus {
 
 .button-login {
     margin-top: 40px;
-    align-self: center;
-    padding-top: 10px;
+    padding-top:10px;
     padding-bottom: 10px;
+    align-self: center;
     border-radius: 5px;
     width: 100%;
     cursor: pointer;
@@ -207,7 +207,7 @@ input:focus {
 .button-login:hover {
     background-color: var(--background-button-green-hover);
     color:  var(--default-white-background);
-    transition: 1s;
+    transition: 1s ease-in-out;
 }
 
 .h1-login {
@@ -260,7 +260,7 @@ footer{
 .help:hover{
     background-color: var(--background-button-blue-focus);
     color: var(--default-white-background);
-    transition: 1s;
+    transition: 1s ease-in-out;
     cursor: pointer;
      width: 51px;
     height: 51px;
@@ -313,3 +313,4 @@ footer{
     display: none;
     padding-left: 10px;
 }
+
