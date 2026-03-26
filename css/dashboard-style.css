@@ -24,6 +24,7 @@
     margin: auto;
     margin-top: 60px;
     box-shadow: 0px 10px 20px var(--default-box-shadow);
+    animation: show 1s ease;
 }
 
 ul{
@@ -199,7 +200,9 @@ li{
 
 .tabela{
     width: 100%;
+    min-height: 100px;
     border-collapse: collapse;
+    border-radius: 5px;
 }
 
 .tabela thead th{
@@ -211,6 +214,7 @@ li{
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin:2px;
+    border: 2px solid var(--default-blue);
 }
 
 .tabela tbody tr{
@@ -223,5 +227,48 @@ li{
 }
 
 .tabela tbody td{
-    padding: 2px 10px;
+    padding: 2px 12px;
+}
+
+ .btn-excluir {
+    margin-top: 0;
+    width: auto;
+    padding: 10px;
+    font-size: 12px;
+    background-color: #e74c3c;
+}
+.btn-excluir:hover {
+    background-color: #c0392b;
+}
+
+.tabelanova{
+    width: 100%;
+    padding: 10px;
+    border-collapse: collapse;
+}
+
+.tabelanova thead{
+    background-color:var(--default-blue);
+    color:white;
+    text-transform: uppercase;
+    text-align: left;
+    letter-spacing: 0.5px;
+    margin: 2px;
+    border: 2px solid var(--default-blue);
+}
+
+.tabelanova thead th{
+   font-size: 13px;
+   padding: 10px;
+}
+.tabelanova tbody{
+    background-color: lightblue;
+    border-left:2px solid var(--default-blue);
+    border-right: 2px solid var(--default-blue);
+}
+
+.tabelanova tbody td{
+    padding: 10px;
+    font-size: 15px;
+    border-bottom: 2px solid var(--default-blue);
 }

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!verificarLogado()) {
         window.location.href = "login.html"
     }
-    onCadastrarClick();
+    onListarClick();
     carregarTabela();
 
     //adiciona um escutador pra toda vez que o usuário digitar dentro da tela
@@ -62,7 +62,7 @@ function cadastrarAtleta(event) {
     event.preventDefault(); //nao recarregar a pagina
 
     //Atleta
-
+    let id = Date.now();
     let nome = getElementValue("input-nome-atleta");
     let nacionalidade = getElementValue("input-nacionalidade");
     let dtNascimento = getElementValue("input-dtNascimento");
@@ -78,9 +78,10 @@ function cadastrarAtleta(event) {
 
 
     const atleta = { //Criando um objeto atleta que não é mapeado automaticamente
+        id: id,
         nome: nome,
         nacionalidade: nacionalidade,
-        dtNascimento: dtNascimento,
+        dtNascimento: new Date(dtNascimento).toLocaleDateString('pt-BR'),
         cpf: cpf,
         modalidade: modalidade,
         genero: genero,
@@ -104,6 +105,7 @@ function cadastrarAtleta(event) {
     setElementText("mensagem", "Dados do " + nome + " cadastrados!");
     setElementDisplay("overlay", "flex");
     resetFormCadastroAtleta();
+    carregarTabela();
 }
 
 function resetFormCadastroAtleta() {
@@ -114,7 +116,7 @@ function abrirPerfil() {
     let menu = document.getElementById("perfil");
     if (menu.style.display != "flex")
         setElementDisplay("perfil", "flex");
-    
+
 }
 
 
@@ -122,7 +124,10 @@ function fecharPerfil() {
     setElementDisplay("perfil", "none");
 }
 
-function carregarTabela(){
+function carregarTabela() {
+     //Desserialização do texto e transforma ele em um objeto
+    //o objeto é uma lista de atletas
+    //se não tiver dados, devolve uma lista/array vazio
     let atletas = JSON.parse(localStorage.getItem("atletas")) || [];
 
     let body = document.getElementById("tabela-atletas-body");
@@ -132,22 +137,56 @@ function carregarTabela(){
 
     } else {
 
-        body.innerHTML = atletas.map(function(atleta)  {
-            let htmlBody = "<tr>" +
-            "<td>"+ atleta.nome + "</td>" +
-            "<td>"+ atleta.nacionalidade + "</td>" +
-            "<td>"+ atleta.dtNascimento + "</td>" +
-            "<td>"+ atleta.cpf + "</td>" +
-            "<td>"+ atleta.modalidade + "</td>" +
-            "<td>"+ atleta.genero + "</td>" +
-            "<td>"+ atleta.categoria + "</td>" +
-            "<td>"+ atleta.peso + "</td>" +
-            "<td>"+ atleta.altura + "</td>" +
-            "<td>"+ atleta.tipoSanguineo + "</td>" +
-            "<td>"+ atleta.alergias + "</td>" +
-            "<td>"+ atleta.historico + "</td>" +
-            "</tr>";
-            return htmlBody;
+        body.innerHTML = atletas.map(function (atleta) {
+            return "<tr>" +
+                "<td><strong>" + atleta.nome + "</strong></td>" +
+                "<td>" + atleta.nacionalidade + "</td>" +
+                "<td>" + atleta.dtNascimento + "</td>" +
+                "<td>" + atleta.cpf + "</td>" +
+                "<td>" + atleta.modalidade + "</td>" +
+                "<td>" + atleta.genero + "</td>" +
+                "<td>" + atleta.categoria + "</td>" +
+                "<td>" + atleta.peso + "</td>" +
+                "<td>" + atleta.altura + "</td>" +
+                "<td>" + atleta.tipoSanguineo + "</td>" +
+                "<td>" + atleta.alergias + "</td>" +
+                "<td>" + atleta.historico + "</td>" +
+                "<td><button class='button-cadastrados btn-excluir' onclick='excluirAtleta(" + atleta.id + ")'>Excluir</button></td>" +
+                "</tr>";
         }).join("");
     }
 }
+
+function editarAtleta(idAtleta){
+
+}
+
+function excluirAtleta(idAtleta) {
+    if (confirm("Deseja realmente excluir o atleta?")) {
+        let atletas = JSON.parse(localStorage.getItem("atletas"));
+        let atletasFiltrado = atletas.filter(function (a) {
+            return a.id !== idAtleta;
+        });
+
+        localStorage.setItem("atletas", JSON.stringify(atletasFiltrado));
+        carregarTabela();
+    }
+}
+
+/*
+function exibeConfirmExcluirAtleta(){
+    let modalPadrao = document.getElementById("modal-padrao");
+    modalPadrao.style.display = "none";
+    let overlay =  document.getElementById("overlay");
+    overlay.style.display = "flex";
+    setElementText("confirm-message","Deseja realmente excluir o atleta cadastrado?");
+}
+
+function fecharOverlayDashboard() {
+    setElementDisplay("overlay","none");
+}
+
+function excluir(){
+
+}
+*/

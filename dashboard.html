@@ -13,10 +13,19 @@
 
 <body id="body">
     <div id="overlay" class="overlay" style="display: none;">
-        <div class="modal"> <!--alert customizado-->
+        <div id="modal-padrao" class="modal"> <!--alert customizado-->
             <p id="mensagem"></p>
             <button class="button-login" onclick="fecharOverlay()">Fechar</button>
         </div>
+        <!--
+         <div id="confirm" class="modal"> 
+            <p id="confirm-message"></p>
+            <div class="linha">
+                <button class="button-error" onclick="excluir('Sim')">Sim</button>
+                <button class="button-cadastrados" onclick="excluir('Não')">Não</button>
+            </div>
+        </div>
+        -->
     </div>
 
     <div id="perfil" class="perfil">
@@ -36,11 +45,13 @@
         <button id="btn-cadastrar" class="btn-aba" onclick="onCadastrarClick()">Cadastrar</button>
         <button id="btn-listar" class="btn-aba" onclick="onListarClick()">Listar</button>
     </nav>
+
     <div id="container-lista" class="container">
         <h1 class="subtitulo">Atletas Cadastrados</h1>
         <table class="tabela" id="tabela-atletas">
-            <thead>
-                <tr>
+            <thead><!--Cabeçalho/Colunas-->
+                 <!--Só vou ter uma linha-->
+                <tr><!--TR É UMA LINHA-->
                     <th>Nome</th>
                     <th>Nacionalidade</th>
                     <th>Data de Nascimento</th>
@@ -53,12 +64,13 @@
                     <th>Tipo Sanguíneo</th>
                     <th>Alergias</th>
                     <th>Histórico</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody id="tabela-atletas-body">
             </tbody>
         </table>
-       
+
     </div>
     <form id="container-cadastro" class="container" onsubmit="cadastrarAtleta(event)">
         <h1 class="titulo">Cadastrar Atleta</h1>
@@ -104,9 +116,9 @@
                 <label for="input-categoria">Categoria</label>
                 <select class="input-default" id="input-categoria" required>
                     <option disabled selected>Selecione a categoria</option>
-                    <option value="1">Sub-20</option>
-                    <option value="2">Sub-23</option>
-                    <option value="3">Sênior</option>
+                    <option value="SUB-20">Sub-20</option>
+                    <option value="SUB-23">Sub-23</option>
+                    <option value="SÊNIOR">Sênior</option>
                 </select>
             </div>
         </div>
