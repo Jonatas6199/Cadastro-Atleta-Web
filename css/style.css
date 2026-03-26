@@ -161,6 +161,20 @@ input:focus {
     gap: 2px;
 }
 
+.button-default {
+    margin: 20px 10px 0px 10px;
+    padding:10px 0px;
+    align-self: center;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    border: none;
+    color: var(--default-white-background);
+    font-weight: bold;
+    background-color:var(--background-button-green);
+}
+
+
 .button-login {
     margin-top: 40px;
     padding-top:10px;
@@ -313,4 +327,5 @@ footer{
     display: none;
     padding-left: 10px;
 }
+
 

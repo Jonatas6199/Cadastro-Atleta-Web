@@ -50,7 +50,7 @@
         <h1 class="subtitulo">Atletas Cadastrados</h1>
         <table class="tabela" id="tabela-atletas">
             <thead><!--Cabeçalho/Colunas-->
-                 <!--Só vou ter uma linha-->
+                <!--Só vou ter uma linha-->
                 <tr><!--TR É UMA LINHA-->
                     <th>Nome</th>
                     <th>Nacionalidade</th>
@@ -64,6 +64,7 @@
                     <th>Tipo Sanguíneo</th>
                     <th>Alergias</th>
                     <th>Histórico</th>
+                    <th></th>
                     <th></th>
                 </tr>
             </thead>
@@ -161,6 +162,74 @@
         <button class="button-login" type="submit">
             Cadastrar
         </button>
+    </form>
+
+    <form id="container-editar" class="container" onsubmit="editarAtleta(evemt)" style="display: none;">
+        <h1 class="titulo">Editar Atleta</h1>
+        <h4 class="subtitulo">
+            Dados Pessoais
+        </h4>
+        <div class="grupoLabelInput">
+            <label for="edit-nome-atleta">Nome Completo</label>
+            <input id="edit-nome-atleta" placeholder="digite o nome completo" type="text" required>
+        </div>
+        <div class="linha">
+            <!--TODO: TROCAR POR SELECT COM PAÍSES-->
+            <div class="grupoLabelInput">
+                <label for="edit-nacionalidade">Nacionalidade</label>
+                <input id="edit-nacionalidade" placeholder="Nacionalidade" type="text" required>
+            </div>
+            <div class="grupoLabelInput">
+                <label for="edit-modalidade">Modalidade</label>
+                <input id="edit-modalidade" placeholder="Modalidade" type="text" required>
+            </div>
+        </div>
+
+        <div class="linha">
+            <div class="grupoLabelInput">
+                <label for="edit-genero">Gênero</label>
+                <input id="edit-genero" placeholder="Gênero" type="text" required>
+            </div>
+
+            <div class="grupoLabelInput">
+                <label for="edit-categoria">Categoria</label>
+                <select class="input-default" id="edit-categoria" required>
+                    <option disabled selected>Selecione a categoria</option>
+                    <option value="SUB-20">Sub-20</option>
+                    <option value="SUB-23">Sub-23</option>
+                    <option value="SÊNIOR">Sênior</option>
+                </select>
+            </div>
+        </div>
+        <h4 class="subtitulo">Dados Médicos</h4>
+        <div class="linha">
+            <div class="grupoLabelInput">
+                <label for="edit-peso">Peso (Kg)</label>
+                <input id="edit-peso" placeholder="Ex: 75" type="number" required>
+            </div>
+
+            <div class="grupoLabelInput">
+                <label for="edit-altura">Altura</label>
+                <input id="edit-altura" placeholder="Ex: 1.80" type="number" required>
+            </div>
+        </div>
+        <div class="grupoLabelInput">
+            <label for="edit-alergias">Alergias</label>
+            <input id="edit-alergias" placeholder="Ex: Diporona, Loratadina, etc" type="text" required>
+        </div>
+        <div class="grupoLabelInput">
+            <label for="edit-historico">Histórico Médico</label>
+            <input id="edit-historico" placeholder="Ex: Cirurgia na clavícula, pedra nos rins" type="text" required>
+        </div>
+        <div class="linha">
+             <button class="button-default" type="submit">
+                Atualizar
+            </button>
+            <button class="button-default dark-blue" onclick="onListarClick()">
+                Voltar
+            </button>
+        </div>
+       
     </form>
 
 </body>

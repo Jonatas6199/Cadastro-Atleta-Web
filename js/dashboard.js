@@ -43,6 +43,7 @@ function onListarClick() {
 
     const containerCadastro = document.getElementById("container-cadastro");
     containerCadastro.style.display = "none";
+    fecharEditar();
 }
 function onCadastrarClick() {
     const element = document.getElementById("btn-cadastrar");
@@ -56,6 +57,23 @@ function onCadastrarClick() {
 
     const containerCadastro = document.getElementById("container-cadastro");
     containerCadastro.style.display = "flex";
+    fecharEditar();
+}
+
+function fecharEditar() {
+    const containerEditar = document.getElementById("container-editar");
+    containerEditar.style.display = "none";
+    containerEditar.reset();
+}
+function abrirEditar() {
+    const listaCadastrados = document.getElementById("container-lista");
+    listaCadastrados.style.display = "none";
+
+    const containerCadastro = document.getElementById("container-cadastro");
+    containerCadastro.style.display = "none";
+    const containerEditar = document.getElementById("container-editar");
+    containerEditar.style.display = "flex";
+    containerEditar.reset();
 }
 
 function cadastrarAtleta(event) {
@@ -116,7 +134,6 @@ function abrirPerfil() {
     let menu = document.getElementById("perfil");
     if (menu.style.display != "flex")
         setElementDisplay("perfil", "flex");
-
 }
 
 
@@ -125,7 +142,7 @@ function fecharPerfil() {
 }
 
 function carregarTabela() {
-     //Desserialização do texto e transforma ele em um objeto
+    //Desserialização do texto e transforma ele em um objeto
     //o objeto é uma lista de atletas
     //se não tiver dados, devolve uma lista/array vazio
     let atletas = JSON.parse(localStorage.getItem("atletas")) || [];
@@ -151,13 +168,28 @@ function carregarTabela() {
                 "<td>" + atleta.tipoSanguineo + "</td>" +
                 "<td>" + atleta.alergias + "</td>" +
                 "<td>" + atleta.historico + "</td>" +
+                "<td><button class='button-cadastrados btn-excluir dark-blue' onclick='editarAtleta(" + atleta.id + ")'>Editar</button></td>" +
                 "<td><button class='button-cadastrados btn-excluir' onclick='excluirAtleta(" + atleta.id + ")'>Excluir</button></td>" +
                 "</tr>";
         }).join("");
     }
 }
 
-function editarAtleta(idAtleta){
+function editarAtleta(idAtleta) {
+    abrirEditar();
+
+    let atletas = JSON.parse(localStorage.getItem("atletas"));
+    let atleta = atletas.find(a=> a.id === idAtleta);
+
+    setElementValue("edit-nome-atleta", atleta.nome);
+    setElementValue("edit-nacionalidade", atleta.nacionalidade);
+    setElementValue("edit-modalidade", atleta.modalidade);
+    setElementValue("edit-genero", atleta.genero);
+    setElementValue("edit-categoria", atleta.categoria);
+    setElementValue("edit-peso", atleta.peso);
+    setElementValue("edit-altura", atleta.altura);
+    setElementValue("edit-alergias", atleta.alergias);
+    setElementValue("edit-historico", atleta.historico);
 
 }
 
@@ -190,3 +222,9 @@ function excluir(){
 
 }
 */
+
+
+
+function setElementValue(element, value){
+    document.getElementById(element).value = value;
+}

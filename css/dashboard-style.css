@@ -272,3 +272,11 @@ li{
     font-size: 15px;
     border-bottom: 2px solid var(--default-blue);
 }
+
+.dark-blue{
+    background-color: var(--default-blue);
+}
+
+.dark-blue:hover{
+    background-color: var(--background-button-blue-darker);
+}
