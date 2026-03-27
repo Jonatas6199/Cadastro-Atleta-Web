@@ -1,3 +1,5 @@
+let atletaEdicao = null;
+
 //Quando a minha tela carregar o conteúdo
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -179,19 +181,56 @@ function editarAtleta(idAtleta) {
     abrirEditar();
 
     let atletas = JSON.parse(localStorage.getItem("atletas"));
-    let atleta = atletas.find(a=> a.id === idAtleta);
+    atletaEdicao = atletas.find(a => a.id === idAtleta);
 
-    setElementValue("edit-nome-atleta", atleta.nome);
-    setElementValue("edit-nacionalidade", atleta.nacionalidade);
-    setElementValue("edit-modalidade", atleta.modalidade);
-    setElementValue("edit-genero", atleta.genero);
-    setElementValue("edit-categoria", atleta.categoria);
-    setElementValue("edit-peso", atleta.peso);
-    setElementValue("edit-altura", atleta.altura);
-    setElementValue("edit-alergias", atleta.alergias);
-    setElementValue("edit-historico", atleta.historico);
-
+    setElementValue("edit-nome-atleta", atletaEdicao.nome);
+    setElementValue("edit-nacionalidade", atletaEdicao.nacionalidade);
+    setElementValue("edit-modalidade", atletaEdicao.modalidade);
+    setElementValue("edit-genero", atletaEdicao.genero);
+    setElementValue("edit-categoria", atletaEdicao.categoria);
+    setElementValue("edit-peso", atletaEdicao.peso);
+    setElementValue("edit-altura", atletaEdicao.altura);
+    setElementValue("edit-alergias", atletaEdicao.alergias);
+    setElementValue("edit-historico", atletaEdicao.historico);
 }
+
+function salvarEdicaoAtleta(event) {
+
+    event.preventDefault();
+    const atletas = JSON.parse(localStorage.getItem("atletas"));
+
+    const nome = getElementValue("edit-nome-atleta");
+    const nacionalidade = getElementValue("edit-nacionalidade");
+    const modalidade = getElementValue("edit-modalidade");
+    const genero = getElementValue("edit-genero");
+    const categoria = getElementValue("edit-categoria");
+    const peso = getElementValue("edit-peso");
+    const altura = getElementValue("edit-altura");
+    const alergias = getElementValue("edit-alergias");
+    const historico = getElementValue("edit-historico");
+
+    let atletasAtualizado = atletas.map(function (atleta) {
+        if (atleta.id == atletaEdicao.id) {
+            atleta.nome = nome;
+            atleta.nacionalidade = nacionalidade;
+            atleta.modalidade = modalidade;
+            atleta.genero = genero;
+            atleta.categoria = categoria;
+            atleta.peso = peso;
+            atleta.altura = altura;
+            atleta.alergias = alergias;
+            atleta.historico = historico;
+
+            return atleta;
+        }
+        return atleta;
+    });
+
+    localStorage.setItem("atletas", JSON.stringify(atletasAtualizado));
+    onListarClick();
+    carregarTabela();
+}
+
 
 function excluirAtleta(idAtleta) {
     if (confirm("Deseja realmente excluir o atleta?")) {
@@ -205,26 +244,10 @@ function excluirAtleta(idAtleta) {
     }
 }
 
-/*
-function exibeConfirmExcluirAtleta(){
-    let modalPadrao = document.getElementById("modal-padrao");
-    modalPadrao.style.display = "none";
-    let overlay =  document.getElementById("overlay");
-    overlay.style.display = "flex";
-    setElementText("confirm-message","Deseja realmente excluir o atleta cadastrado?");
-}
-
-function fecharOverlayDashboard() {
-    setElementDisplay("overlay","none");
-}
-
-function excluir(){
-
-}
-*/
-
-
-
-function setElementValue(element, value){
+function setElementValue(element, value) {
     document.getElementById(element).value = value;
+}
+
+function getElementValue(element) {
+    return document.getElementById(element).value;
 }
